@@ -1,0 +1,17 @@
+{
+  "name": "carousel",
+  "repo": "ericgj/carousel",
+  "description": "Carousel component",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ],
+  "styles": [
+    "carousel.css"
+  ]
+}
