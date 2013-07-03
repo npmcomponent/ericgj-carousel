@@ -1,0 +1,62 @@
+<!DOCTYPE 5>
+<html>
+  <head>
+    <title>Carousel</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      
+      p {
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0;
+      }
+
+      body {
+        padding: 60px;
+        font: 300 14px "Helvetica Neue", Helvetica, Arial;
+        min-height: 1000px;
+      }
+
+      .item {
+        -webkit-transition: opacity 0.3s ease-in;
+        -moz-transition: opacity 0.3s ease-in;
+        -ms-transition: opacity 0.3s ease-in;
+        transition: opacity 0.3s ease-in;
+        opacity: 0;
+        display: block;
+      }
+
+      .item.transition {
+        opacity: 1;
+      }
+
+      .item.hide {
+        display: none;
+      }
+
+    </style>
+  </head>
+  <body>
+   <h1>Carousel  </h1>
+   <div class="carousel" id="example1">
+     <img class="item" src="http://placekitten.com/200/200" />
+     <img class="item" src="http://placekitten.com/250/100" />
+     <img class="item" src="http://placekitten.com/100/250" />
+     <img class="item" src="http://placekitten.com/100/200" />
+     <img class="item" src="http://placekitten.com/100/300" />
+   </div>
+
+   <script src="../build/build.js"></script>
+
+   <script>
+      var carousel = require('carousel')('#example1 .item');
+      function cycle(c,timeout){
+        c.next();
+        setTimeout(cycle, timeout, c, timeout);
+      }
+      window.onload = function(){
+        carousel.start();
+        cycle(carousel, 6000);
+      }
+   </script>
+  </body>
+</html>

@@ -3,7 +3,7 @@ var classes = require('classes');
 module.exports = Carousel;
 
 function Carousel(els,length){
-  if (!(this instanceof Carousel)) return new Carousel(el);
+  if (!(this instanceof Carousel)) return new Carousel(els);
   this.els = (typeof els == 'string' ? document.querySelectorAll(els) : els);
   this.length = length || this.els.length;
   return this;
@@ -30,8 +30,8 @@ Carousel.prototype.prev = function(){
 }
 
 Carousel.prototype._refresh = function(){
-  hide(this.last);
-  show(this.current);
+  if (~this.current) show(this.els[this.current]);
+  if (~this.last)    hide(this.els[this.last]);
 }
 
 Carousel.prototype._init = function(){
@@ -40,10 +40,12 @@ Carousel.prototype._init = function(){
   }
 }
 
+/* note delay to get item.hide -> item -> item.transition to work */
 function show(el){
-  classes(el).remove('hide').add('transition');
+  classes(el).remove('hide')
+  setTimeout( function(self){ self.add('transition') }, 20, classes(el) );
 }
 
 function hide(el){
-  classes(el).add('hide').add('transition');
+  classes(el).add('hide').remove('transition');
 }
