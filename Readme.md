@@ -33,16 +33,16 @@
 
 ### Carousel#next
 
-  Display next element
+  Display next 'window' of elements
 
 ### Carousel#prev
 
-  Display previous element
+  Display previous 'window' of elements
 
 ### Carousel#autoplay( msecs )
 
-  Define the duration each element is displayed before advancing to next, in 
-  milliseconds.
+  Define the duration each element 'window' is displayed before advancing to 
+  next, in milliseconds.
 
 ### Carousel#start
 
