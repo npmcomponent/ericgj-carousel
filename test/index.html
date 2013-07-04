@@ -43,6 +43,7 @@
      <img class="item" src="http://placekitten.com/100/250" />
      <img class="item" src="http://placekitten.com/100/200" />
      <img class="item" src="http://placekitten.com/100/300" />
+     <button>Start</button>
    </div>
 
    <script src="../build/build.js"></script>
@@ -51,9 +52,17 @@
       var carousel = require('carousel')('#example1 .item');
       carousel.autoplay(6000);
 
-      window.onload = function(){
-        carousel.start();
+      var button = document.querySelector('#example1 button');
+      button.onclick = function(e){
+        if (e.target.innerText == 'Stop'){
+          carousel.stop();
+          e.target.innerText = 'Start';
+        } else {
+          carousel.start();
+          e.target.innerText = 'Stop';
+        }
       }
+
    </script>
   </body>
 </html>

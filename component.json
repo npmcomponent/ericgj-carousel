@@ -2,7 +2,7 @@
   "name": "carousel",
   "repo": "ericgj/carousel",
   "description": "Carousel component",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "keywords": [],
   "dependencies": {
     "component/classes": "*"  
@@ -13,7 +13,5 @@
   "scripts": [
     "index.js"
   ],
-  "styles": [
-    "carousel.css"
-  ]
+  "styles": []
 }
