@@ -4,7 +4,7 @@
   Another simple carousel/slideshow component
 
   Note no swipe support is included (or planned). If you need a swipeable 
-  carousel, use [swipe][component/swipe].
+  carousel, use [component/swipe][swipe].
 
 ## Installation
 
@@ -58,7 +58,7 @@ Stop autoplay
 
 - You should add `.hide { display: none; }` for hiding inactive elements.
 
-- For transitions, add `.transition { ... }`. Check [test][test\index.html]
+- For transitions, add `.transition { ... }`. Check [test\index.html][test]
 for an example.
 
 ## License
