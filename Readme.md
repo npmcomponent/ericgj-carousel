@@ -54,8 +54,8 @@
 
 ### Carousel#width( n )
 
-  Set width of carousel window (how many elements shown each cycle). Defaults
-  to 1.
+  Set width of carousel 'window' (i.e., how many elements shown each cycle). 
+  Defaults to 1.
 
 ### Carousel#length( n )
 
