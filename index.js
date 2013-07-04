@@ -5,8 +5,41 @@ module.exports = Carousel;
 function Carousel(els,length){
   if (!(this instanceof Carousel)) return new Carousel(els);
   this.els = (typeof els == 'string' ? document.querySelectorAll(els) : els);
-  this.length = length || this.els.length;
+  this.length(length || this.els.length);
+  this.width(1);
   this._init();
+  return this;
+}
+
+Carousel.prototype.next = function(){
+  this.last = this.current;
+  if (~this.current){
+    this.current = (this.current + this._width) % this._length;
+  } else {
+    this.current = 0;
+  }
+  this._refresh();
+  return this;
+}
+
+Carousel.prototype.prev = function(){
+  this.last = this.current;
+  if (~this.current){
+    var d = this.current - this._width
+    this.current = (d < 0 ? this._length + d : d) % this._length;
+  } else {
+    this.current = 0;
+  }
+  this._refresh();
+  return this;
+}
+
+Carousel.prototype.length = function(n){
+  this._length = n;
+  return this;
+}
+Carousel.prototype.width = function(n){
+  this._width = n;
   return this;
 }
 
@@ -38,23 +71,37 @@ Carousel.prototype.autoplay = function(msecs){
   return this;
 }
 
-Carousel.prototype.next = function(){
-  this.last = this.current;
-  this.current = (this.current + 1) % this.length;
-  this._refresh();
-  return this;
+Carousel.prototype.currentSlice = function(){
+  return this._sliceFrom(this.current);
 }
 
-Carousel.prototype.prev = function(){
-  this.last = this.current;
-  this.current = (this.current - 1) % this.length;
-  this._refresh();
-  return this;
+Carousel.prototype.lastSlice = function(){
+  return this._sliceFrom(this.last);
+}
+
+Carousel.prototype._sliceFrom = function(start){
+  var ret = [];
+  if (~start) {
+    for (var i=0;i<this._width;++i){
+      ret.push(this.els[(start + i) % this._length]);
+    }
+  }
+  return ret;
 }
 
 Carousel.prototype._refresh = function(){
-  if (~this.current) show(this.els[this.current]);
-  if (~this.last)    hide(this.els[this.last]);
+  if (~this.last)    {
+    var slice = this.lastSlice();
+    for (var i=0;i<slice.length;++i){
+      hide(slice[i]);
+    }
+  }
+  if (~this.current) {
+    var slice = this.currentSlice();
+    for (var i=0;i<slice.length;++i){
+      show(slice[i]);
+    }
+  }
 }
 
 Carousel.prototype._init = function(){
