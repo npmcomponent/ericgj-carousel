@@ -49,13 +49,10 @@
 
    <script>
       var carousel = require('carousel')('#example1 .item');
-      function cycle(c,timeout){
-        c.next();
-        setTimeout(cycle, timeout, c, timeout);
-      }
+      carousel.autoplay(6000);
+
       window.onload = function(){
         carousel.start();
-        cycle(carousel, 6000);
       }
    </script>
   </body>

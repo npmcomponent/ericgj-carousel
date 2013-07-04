@@ -12,7 +12,20 @@ function Carousel(els,length){
 Carousel.prototype.start = function(){
   this.last = this.current = -1;
   this._init();
+  if (this.cycle) this.cycle();
   return this;
+}
+
+Carousel.prototype.autoplay = function(msecs){
+  if (msecs) {
+    var self = this;
+    this.cycle = function(){
+      self.next();
+      setTimeout( self.cycle, msecs, self, msecs );
+    }
+  } else {
+    delete this.cycle;
+  }
 }
 
 Carousel.prototype.next = function(){
