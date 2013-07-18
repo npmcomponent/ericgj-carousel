@@ -2,7 +2,7 @@
   "name": "carousel",
   "repo": "ericgj/carousel",
   "description": "Carousel component",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "keywords": [],
   "dependencies": {
     "component/classes": "*"  

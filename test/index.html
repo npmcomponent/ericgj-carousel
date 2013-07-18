@@ -4,6 +4,103 @@
     <title>Carousel</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style>
+      @-webkit-keyframes fade-in-left {
+        0% {
+          opacity: 0;
+          -webkit-transform: translateX(-200px);
+        }
+
+        100% {
+          opacity: 1;
+          -webkit-transform: translateX(0);
+        }
+      }
+
+      @-moz-keyframes fade-in-left {
+        0% {
+          opacity: 0;
+          -moz-transform: translateX(-200px);
+        }
+
+        100% {
+          opacity: 1;
+          -moz-transform: translateX(0);
+        }
+      }
+
+      @-o-keyframes fade-in-left {
+        0% {
+          opacity: 0;
+          -o-transform: translateX(-200px);
+        }
+
+        100% {
+          opacity: 1;
+          -o-transform: translateX(0);
+        }
+      }
+
+      @keyframes fade-in-left {
+        0% {
+          opacity: 0;
+          transform: translateX(-200px);
+        }
+
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      
+      @-webkit-keyframes fade-out-right {
+        0% {
+          opacity: 1;
+          -webkit-transform: translateX(0);
+        }
+
+        100% {
+          opacity: 0;
+          -webkit-transform: translateX(200px);
+        }
+      }
+
+      @-moz-keyframes fade-out-right {
+        0% {
+          opacity: 1;
+          -moz-transform: translateX(0);
+        }
+
+        100% {
+          opacity: 0;
+          -moz-transform: translateX(200px);
+        }
+      }
+
+      @-o-keyframes fade-out-right {
+        0% {
+          opacity: 1;
+          -o-transform: translateX(0);
+        }
+
+        100% {
+          opacity: 0;
+          -o-transform: translateX(200px);
+        }
+      }
+
+      @keyframes fade-out-right {
+        0% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+
+        100% {
+          opacity: 0;
+          transform: translateX(200px);
+        }
+      }
+
+
       
       p {
         -webkit-margin-before: 0;
@@ -17,26 +114,35 @@
       }
 
       .item {
-        -webkit-transition: opacity 0.3s ease-in;
-        -moz-transition: opacity 0.3s ease-in;
-        -ms-transition: opacity 0.3s ease-in;
-        transition: opacity 0.3s ease-in;
-        opacity: 0;
         max-width: 310;
         height: 310;
         padding: 5px;
         float: left;
+        -webkit-animation-duration: 1s;
+        -moz-webkit-animation-duration: 1s;
+        -ms-webkit-animation-duration: 1s;
+        animation-duration: 1s;        
       }
-
-      .item.transition {
-        opacity: 1;
-      }
-
+      
       .item.hide {
         display: none;
       }
 
       .clear { clear: both;  }
+      
+      .fade-in-left {
+        -webkit-animation-name: fade-in-left;
+        -moz-animation-name: fade-in-left;
+        -o-animation-name: fade-in-left;
+        animation-name: fade-in-left;
+      }
+      
+      .fade-out-right {
+        -webkit-animation-name: fade-out-right;
+        -moz-animation-name: fade-out-right;
+        -o-animation-name: fade-out-right;
+        animation-name: fade-out-right;
+      }      
 
     </style>
   </head>
@@ -63,6 +169,7 @@
    <script>
       var carousel = require('carousel')('#example1 .item');
       carousel.autoplay(6000).width(3);
+      carousel.transition('animated fade-in-left');
 
       var prevButton = document.querySelector('#example1 button#prev');
       var nextButton = document.querySelector('#example1 button#next');

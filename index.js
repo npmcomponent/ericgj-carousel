@@ -7,6 +7,7 @@ function Carousel(els,length){
   this.els = (typeof els == 'string' ? document.querySelectorAll(els) : els);
   this.length(length || this.els.length);
   this.width(1);
+  this.transition('transition');
   this._init();
   return this;
 }
@@ -71,6 +72,11 @@ Carousel.prototype.autoplay = function(msecs){
   return this;
 }
 
+Carousel.prototype.transition = function(trans){
+  this._transition = trans;
+  return this;
+}
+
 Carousel.prototype.currentSlice = function(){
   return this._sliceFrom(this.current);
 }
@@ -93,13 +99,13 @@ Carousel.prototype._refresh = function(){
   if (~this.last)    {
     var slice = this.lastSlice();
     for (var i=0;i<slice.length;++i){
-      hide(slice[i]);
+      hide(slice[i], this._transition);
     }
   }
   if (~this.current) {
     var slice = this.currentSlice();
     for (var i=0;i<slice.length;++i){
-      show(slice[i]);
+      show(slice[i], this._transition);
     }
   }
 }
@@ -107,16 +113,20 @@ Carousel.prototype._refresh = function(){
 Carousel.prototype._init = function(){
   this.last = this.current = -1;
   for (var i=0;i<this.els.length;++i){
-    hide(this.els[i]);
+    hide(this.els[i], this._transition);
   }
 }
 
-/* note delay to get item.hide -> item -> item.transition to work */
-function show(el){
-  classes(el).remove('hide')
-  setTimeout( function(self){ self.add('transition') }, 20, classes(el) );
+function show(el,trans){
+  trans = trans.split(' ');
+  var css = classes(el);
+  for (var i=0;i<trans.length;++i) css.add(trans[i]);
+  css.remove('hide');
 }
 
-function hide(el){
-  classes(el).add('hide').remove('transition');
+function hide(el,trans){
+  trans = trans.split(' ');
+  var css = classes(el);
+  for (var i=0;i<trans.length;++i) css.remove(trans[i]);
+  css.add('hide');
 }

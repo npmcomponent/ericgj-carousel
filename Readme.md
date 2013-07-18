@@ -17,6 +17,7 @@
   var carousel = require('carousel')('#root > .item')
   carousel.autoplay(6000);
   carousel.width(4);
+  carousel.transition('animated bounce-in-left');
   window.onload = function(){
     carousel.start();
   }
@@ -30,6 +31,15 @@
   Construct a carousel of given elements, or using given selector query.
   Optionally specify a maximum length of elements, otherwise it will cycle
   through all given/selected elements.
+
+### Carousel#length( n )
+
+  Limit of total elements in carousel. Defaults to all given/selected elements.
+
+### Carousel#width( n )
+
+  Set width of carousel 'window' (i.e., how many elements shown each cycle). 
+  Defaults to 1.
 
 ### Carousel#next
 
@@ -52,16 +62,11 @@
 
   Stop autoplay
 
-### Carousel#width( n )
+### Carousel#transition( css:String )
 
-  Set width of carousel 'window' (i.e., how many elements shown each cycle). 
-  Defaults to 1.
-
-### Carousel#length( n )
-
-  Limit of total elements in carousel. Defaults to all given/selected elements.
-
-
+  CSS class(es) to be added to elements as they are shown. Defaults to 
+  'transition'.
+  
 ## Notes
 
 - This carousel does not currently rearrange elements but only shows/hides
@@ -71,8 +76,9 @@
 
 - You should add `.hide { display: none; }` for hiding inactive elements.
 
-- For transitions, add `.transition { ... }`. Check [test\index.html][test]
-  for an example.
+- For [animate.css][animate] style transitions, check [test\index.html][test] 
+  for an example. Note 'exit' transitions aren't currently supported by this
+  carousel.
 
 ## License
 
@@ -80,5 +86,5 @@
 
 [swipe]: https://github.com/component/swipe
 [test]:  https://github.com/ericgj/carousel/blob/master/test/index.html
-
+[animate]: http://daneden.me/animate/
 
