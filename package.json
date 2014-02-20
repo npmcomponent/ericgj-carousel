@@ -1,0 +1,12 @@
+{
+  "name": "ericgj-carousel",
+  "description": "Carousel component",
+  "version": "0.1.2",
+  "keywords": [],
+  "main": "index.js",
+  "styles": [],
+  "dependencies": {
+    "component-classes": "git://github.com/npmcomponent/component-classes.git"
+  },
+  "license": "MIT"
+}
